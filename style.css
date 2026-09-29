@@ -154,3 +154,10 @@ html.dark {
 .core-dep code {
   white-space: nowrap;
 }
+
+/* Footer link to the current slide (slide-bottom.vue): quiet, not styled like a content link */
+.url-footer {
+  color: inherit !important;
+  border-bottom: none !important;
+  text-decoration: none !important;
+}

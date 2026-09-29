@@ -297,7 +297,7 @@ class MyPlugin:
 
 <div class="core-dep">
 
-**Only need the library?** Add [`profiler-qgis-core`](https://pypi.org/project/profiler-qgis-core/) to `runtime_requires`, see the <a href="https://cofactor-company.github.io/quc2026-slides/qgis-plugin-dev-workshop/#/third-party-libraries" target="_blank">workshop slides</a>
+**Only need the library?** Add [`profiler-qgis-core`](https://pypi.org/project/profiler-qgis-core/) to `runtime_requires`, see the <a href="https://cofactor-company.github.io/quc2026-slides/qgis-plugin-dev-workshop/#/third-party-libraries?clicks=1" target="_blank">workshop slides</a>
 
 </div>
 
@@ -337,7 +337,7 @@ MacroPlayer(playback_speed=1.5).play(macro)
 
 <div class="core-dep">
 
-**Only need the library?** Add [`macro-qgis-core`](https://pypi.org/project/macro-qgis-core/) to `runtime_requires`, see the <a href="https://cofactor-company.github.io/quc2026-slides/qgis-plugin-dev-workshop/#/third-party-libraries" target="_blank">workshop slides</a>
+**Only need the library?** Add [`macro-qgis-core`](https://pypi.org/project/macro-qgis-core/) to `runtime_requires`, see the <a href="https://cofactor-company.github.io/quc2026-slides/qgis-plugin-dev-workshop/#/third-party-libraries?clicks=1" target="_blank">workshop slides</a>
 
 </div>
 

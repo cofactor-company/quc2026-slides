@@ -884,7 +884,7 @@ The rest of the workshop goes through these one by one, with an exercise after e
 > [!PROBLEM] <code>LOGGER.debug()</code> calls everywhere, then restart QGIS and try again
 
 <v-click>
-<div class="grid grid-cols-[1fr_1.2fr] gap-6 mt-4">
+<div class="grid grid-cols-[1.2fr_1fr] gap-6 mt-4">
 <div>
 
 ```dotenv [.env]
@@ -1085,7 +1085,6 @@ def test_buffer_roads(roads_layer: QgsVectorLayer):
 <div>
 
 ```python
-# Widgets with pytest-qt
 def test_select_button_accepts_dialog(
     qtbot: QtBot,
 ) -> None:
@@ -1106,7 +1105,7 @@ def test_select_button_accepts_dialog(
 * Use `--qgis_disable_gui` to keep the widgets hidden
 
 <style>
-.slidev-code { font-size: 12.5px !important; line-height: 19px !important; }
+.slidev-code { font-size: 12.5px !important; line-height: 18px !important; }
 </style>
 
 ---
@@ -1398,7 +1397,7 @@ jobs:
 </v-click>
 
 <style>
-.slidev-code { font-size: 12.5px !important; line-height: 19px !important; }
+.slidev-code { font-size: 12.5px !important; line-height: 17px !important; }
 </style>
 
 ---
