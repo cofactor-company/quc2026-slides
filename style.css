@@ -1,0 +1,156 @@
+/* Cofactor look (https://cofactor.fi/): charcoal background, white text, cyan as the only accent. */
+
+:root {
+  --cofactor-bg: #262729;
+  --cofactor-bg-dark: #212326;
+  --cofactor-fg: #ffffff;
+  --cofactor-cyan: #00ffff;
+  /* Softer cyan for larger accents (headings, links), where pure cyan is harsh */
+  --cofactor-accent: #5ce1e6;
+
+  --slidev-theme-primary: var(--cofactor-accent);
+  --slidev-code-background: var(--cofactor-bg-dark);
+}
+
+html.dark {
+  --slidev-code-background: var(--cofactor-bg-dark);
+}
+
+.slidev-layout {
+  background-color: var(--cofactor-bg);
+  color: var(--cofactor-fg);
+}
+
+.slidev-layout a {
+  color: var(--cofactor-accent);
+  border-bottom-color: currentColor;
+}
+
+.slidev-layout a:hover {
+  color: var(--cofactor-cyan);
+}
+
+.slidev-layout li::marker {
+  color: var(--cofactor-accent);
+}
+
+.slidev-layout :not(pre) > code {
+  background-color: var(--cofactor-bg-dark);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* seriph dims the paragraph after h1; keep subtitles readable on charcoal */
+.slidev-layout h1 + p {
+  opacity: 0.7;
+}
+
+/* No dashed underline under code chips inside links */
+.slidev-layout a:has(> code) {
+  border-bottom: none;
+}
+
+/* Code blocks: Slidev's default 12px is hard to read from the back of the room */
+:root {
+  --slidev-code-font-size: 14px;
+  --slidev-code-line-height: 21px;
+}
+
+:root {
+  --slidev-code-font-size: 14px;
+  --slidev-code-line-height: 21px;
+}
+
+/* Small pointer from a main slide to an appendix ("extra") slide */
+.extra-ref {
+  position: absolute;
+  bottom: 1.2rem;
+  right: 2rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* On slides with the Cofactor footer logo, sit above it */
+.extra-ref.above-footer {
+  bottom: 3.2rem;
+}
+
+/* `> [!QUESTION]` callout (registered in vite.config.ts): an audience question, in the Cofactor accent */
+.markdown-alert.markdown-alert-question {
+  border-left-color: var(--cofactor-accent);
+  background-color: var(--cofactor-bg-dark);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.markdown-alert.markdown-alert-question .markdown-alert-title {
+  color: var(--cofactor-accent);
+}
+
+/* `> [!PROBLEM]` callout (registered in vite.config.ts): the pain point a slide solves */
+.markdown-alert.markdown-alert-problem {
+  --cofactor-problem: #f0883e;
+  border-left-color: var(--cofactor-problem);
+  background-color: var(--cofactor-bg-dark);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.markdown-alert.markdown-alert-problem .markdown-alert-title {
+  color: var(--cofactor-problem);
+}
+
+/* Compact: title and text on one row, so the block is no taller than a plain quote */
+.markdown-alert.markdown-alert-problem {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.markdown-alert.markdown-alert-problem .markdown-alert-title {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+/* Filename title on code blocks: ```python [path/to/file.py]
+   Hide the file-type icon slot (no icon set installed), so the name lines up with the code */
+.slidev-code-block-title > div:not(.leading-1em) {
+  display: none;
+}
+
+/* Cards: a dark box with an accent title (macro-profiler) */
+.card {
+  background: var(--cofactor-bg-dark);
+  border-radius: 0.5rem;
+  padding: 1rem 1.2rem;
+}
+
+.card-title {
+  color: var(--cofactor-accent);
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+/* Plugin icon in the top-right corner of a slide */
+.plugin-icon {
+  position: absolute;
+  top: 2rem;
+  right: 3.5rem;
+  height: 3.5rem;
+}
+
+/* Macro-profiler extras: how to use a core library in your own plugin */
+.core-dep {
+  margin-top: 1rem;
+  border-left: 3px solid var(--cofactor-accent);
+  background: var(--cofactor-bg-dark);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+}
+
+.core-dep p {
+  margin: 0;
+}
+
+.core-dep code {
+  white-space: nowrap;
+}

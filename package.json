@@ -1,0 +1,24 @@
+{
+  "name": "quc2026-slides",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:macro-profiler && npm run build:workshop && npm run build:index",
+    "build:macro-profiler": "slidev build macro-profiler.md --base /macro-profiler/ --out dist/macro-profiler",
+    "build:workshop": "slidev build qgis-plugin-dev-workshop.md --base /qgis-plugin-dev-workshop/ --out dist/qgis-plugin-dev-workshop",
+    "build:index": "node -e \"require('fs').cpSync('site', 'dist', { recursive: true })\"",
+    "dev:macro-profiler": "slidev macro-profiler.md --port 3030 --open",
+    "dev:workshop": "slidev qgis-plugin-dev-workshop.md --port 3031 --open",
+    "export:macro-profiler": "slidev export macro-profiler.md",
+    "export:workshop": "slidev export qgis-plugin-dev-workshop.md"
+  },
+  "dependencies": {
+    "@slidev/cli": "^53.0.0",
+    "@slidev/theme-seriph": "latest",
+    "vue": "^3.5.33"
+  },
+  "devDependencies": {
+    "markdown-it-github-alerts": "^1.0.1",
+    "playwright-chromium": "^1.63.0"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "quc2026-slides",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+  // Keep the container's node_modules separate from the host's
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+  // Pass the host's proxy settings through (empty when unset), never proxying localhost
+  "containerEnv": {
+    "HTTP_PROXY": "${localEnv:HTTP_PROXY}",
+    "HTTPS_PROXY": "${localEnv:HTTPS_PROXY}",
+    "NO_PROXY": "localhost,127.0.0.1,${localEnv:NO_PROXY}",
+    "http_proxy": "${localEnv:HTTP_PROXY}",
+    "https_proxy": "${localEnv:HTTPS_PROXY}",
+    "no_proxy": "localhost,127.0.0.1,${localEnv:NO_PROXY}",
+    // Chromium is only needed for `slidev export`
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
+    // Make the dev servers listen on 127.0.0.1 instead of ::1 so port forwarding reaches them
+    "NODE_OPTIONS": "--dns-result-order=ipv4first"
+  },
+  "postCreateCommand": "sudo chown node node_modules && npm ci",
+  "forwardPorts": [3030, 3031],
+  "portsAttributes": {
+    "3030": { "label": "Macro profiler", "onAutoForward": "openBrowser" },
+    "3031": { "label": "Workshop", "onAutoForward": "openBrowser" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "antfu.slidev",
+        "Vue.volar"
+      ]
+    }
+  },
+  "remoteUser": "node"
+}
