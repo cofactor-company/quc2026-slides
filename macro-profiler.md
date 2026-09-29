@@ -220,16 +220,6 @@ class: text-center
 # Live demo
 
 
-<!--
-Demo plan:
-1. Macro tab: record a short workflow (open a layer, zoom, identify, maybe digitize a feature)
-2. Save it as .json and replay it, faster
-3. Profiler tab: record while panning and zooming the heavy project, find the slowest layer with the filter and threshold
-4. Show a performance meter catching a freeze
-5. Turn on "Profile macro runtime" in the macro settings and replay the macro
-6. Show the macro run in the profiler tree and compare two runs
--->
-
 ---
 layout: center
 class: text-center

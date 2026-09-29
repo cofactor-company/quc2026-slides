@@ -246,10 +246,6 @@ copier update --answers-file .copier-answers.qgis-plugin.yml \
 .slidev-code { font-size: 12px !important; line-height: 17px !important; }
 </style>
 
-<!--
-plugin.py already imports qgis_plugin_tools (logging, tr()). Mention it in one sentence here, the details come in "Libraries" after the break.
--->
-
 <div class="extra-ref">What about Plugin Builder or Cookiecutter templates? <Link to="extra-plugin-builder">Extra slides →</Link></div>
 </v-click>
 ---
@@ -278,14 +274,6 @@ Possible solutions:
 .option-letter { display: inline-flex; align-items: center; justify-content: center; width: 1.8rem; height: 1.8rem; border-radius: 9999px; background: var(--cofactor-bg-dark); color: var(--cofactor-accent); font-weight: 700; }
 </style>
 
-
-<!--
-Ask the audience to vote A, B or C before the click.
-
-A: works, but you install dev tools (ruff, mypy, pytest...) into QGIS's own Python and every plugin shares them.
-B: autocomplete only, no way to run tests or tools against QGIS.
-C: isolated per project, sees QGIS libraries, and dev tools stay out of the QGIS installation.
--->
 
 ---
 
@@ -334,10 +322,6 @@ your project's own packages
 .venv-arrow { text-align: center; opacity: 0.6; font-size: 0.75rem; }
 </style>
 
-<!--
-The venv inherits the interpreter it was created from. Windows / macOS bundle their own Python inside QGIS; on Linux QGIS uses the system Python.
--->
-
 
 
 ---
@@ -375,7 +359,6 @@ transition: fade
 
 
 # Exercise: initial plugin with copier template
-<!-- 30min reserved -->
 
 
 
@@ -422,11 +405,6 @@ The common ways to get your code into QGIS while developing:
 **qgis-plugin-dev-tools**: QGIS starts **from your venv** with the plugin installed and a debugger attached, and runtime dependencies are **vendored into the zip**
 
 </div>
-
-<!--
-pb_tool is a good tool and the default in Plugin Builder: it compiles .ui/.qrc files, builds Sphinx docs, compiles translations and zips the plugin, and it supports QGIS 3 and 4.
-The difference is the development loop: pb_tool copies files into your QGIS profile, while qpdt runs QGIS from your project's venv, so dev tools, the debugger and PyPI dependencies just work, and the released zip bundles those dependencies.
--->
 
 <style>
 .way { background: var(--cofactor-bg-dark); border-radius: 0.5rem; padding: 0.2rem 1rem 0.6rem; }
@@ -728,10 +706,6 @@ prek run --all-files  # check everything
 </div>
 </v-click>
 
-<!--
-prek is a faster drop-in replacement for pre-commit, it reads the same .pre-commit-config.yaml.
--->
-
 ---
 
 # Pre-commit hooks in the template
@@ -783,10 +757,6 @@ Commit messages follow <a href="https://www.conventionalcommits.org/">Convention
 .hook-card { background: var(--cofactor-bg-dark); border-radius: 0.5rem; padding: 0.8rem 1rem; }
 .hook-name { font-family: var(--slidev-code-font-family, monospace); color: var(--cofactor-accent); margin-bottom: 0.25rem; }
 </style>
-
-<!--
-Top row: the Python checks from the previous slides, same config as in the IDE.
--->
 
 
 ---
@@ -871,10 +841,6 @@ flowchart TB
 
 </div>
 
-<!--
-The rest of the workshop goes through these one by one, with an exercise after each.
--->
-
 ---
 
 
@@ -912,12 +878,6 @@ DEBUGGER_LIBRARY=debugpy
 </div>
 </div>
 </v-click>
-
-<!--
-PyCharm / IDEA: the order matters. pydevd connects to the IDE, while debugpy waits for the IDE to attach, so the Python Debug Server must already be running when QGIS starts.
-
-Tests can be debugged the same way from the IDE's test runner, no QGIS needed.
--->
 
 <style>
 .slidev-code { font-size: 12.5px !important; line-height: 19px !important; }
@@ -1587,10 +1547,6 @@ Every problem from today, and what solved it
 .takeaways .solution b { color: var(--cofactor-accent); }
 </style>
 
-<!--
-Closes the loop on the orange Problem blocks: each one from today, with the tool or practice that solved it.
--->
-
 ---
 
 # Even more important with AI tools
@@ -1620,8 +1576,6 @@ A consistent project layout, config, and tooling are easy for both humans and AI
 .ai-card { background: var(--cofactor-bg-dark); border-radius: 0.5rem; padding: 0.9rem 1rem; }
 .ai-name { color: var(--cofactor-accent); font-weight: 700; margin-bottom: 0.25rem; }
 </style>
-
-<!-- FINAL SLIDE -->
 
 ---
 layout: center
@@ -1719,11 +1673,6 @@ routeAlias: extra-plugin-builder
 
 </div>
 
-<!--
-Plugin Builder's strengths: it's built into QGIS, needs no command line, offers three plugin types and can generate Sphinx docs. Great for a first plugin.
-The big difference is what happens later: a Plugin Builder project is on its own from day one, while a copier project keeps receiving the template's fixes and new tooling with copier update, and a plugin started elsewhere can adopt the template.
--->
-
 <style>
 table { font-size: 0.78rem; }
 td, th { padding-top: 0.28rem !important; padding-bottom: 0.28rem !important; }
@@ -1760,11 +1709,6 @@ routeAlias: extra-cookiecutter
 </div>
 </div>
 
-<!--
-Both are good templates with a lot of the same ideas: linters, tests, CI and release automation. Oslandia's also generates documentation, which ours doesn't.
-Our main reasons for copier: updates flow into every plugin created from the template, and qgis-plugin-dev-tools gives the development loop and dependency vendoring on top.
--->
-
 <style>
 h3 { font-size: 1.05rem !important; color: var(--cofactor-accent); margin-top: 0.5rem !important; }
 </style>
@@ -1794,11 +1738,6 @@ routeAlias: extra-qpip
 
 >[!NOTE] Vendor pure-Python dependencies 
 > qpip is an option when a plugin really needs cross-platform binary packages
-
-<!--
-qpip is maintained by OPENGIS.ch and solves a real problem: binary packages like numpy extensions or compiled libraries can't be vendored into one zip for every platform.
-The trade-off is that installation happens on the user's machine: it needs network access to PyPI, and all plugins in a profile share the same installed versions.
--->
 
 <style>
 table { font-size: 0.8rem; }
@@ -1886,11 +1825,6 @@ routeAlias: extra-qgis-plugin-ci
 </div>
 
 * Both do CD well. qgis-plugin-dev-tools covers the whole loop, **develop → build → publish**, with one config in `pyproject.toml`
-
-<!--
-qgis-plugin-ci strengths worth saying out loud: it is maintained under the QGIS organisation, it is widely used, the Transifex integration is great for plugins with many community translators, and it can host a custom plugin repository through GitHub releases.
-We prefer qpdt because the same tool runs the plugin while developing and builds the release, and PyPI dependencies are bundled without submodules.
--->
 
 <style>
 table { font-size: 0.8rem; }
