@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "npm run build:macro-profiler && npm run build:workshop && npm run build:index",
-    "build:macro-profiler": "slidev build macro-profiler.md --base /macro-profiler/ --out dist/macro-profiler",
-    "build:workshop": "slidev build qgis-plugin-dev-workshop.md --base /qgis-plugin-dev-workshop/ --out dist/qgis-plugin-dev-workshop",
+    "build:macro-profiler": "slidev build macro-profiler.md --base ${BASE_PATH:-}/macro-profiler/ --out dist/macro-profiler",
+    "build:workshop": "slidev build qgis-plugin-dev-workshop.md --base ${BASE_PATH:-}/qgis-plugin-dev-workshop/ --out dist/qgis-plugin-dev-workshop",
     "build:index": "node -e \"require('fs').cpSync('site', 'dist', { recursive: true })\"",
     "dev:macro-profiler": "slidev macro-profiler.md --port 3030 --open",
     "dev:workshop": "slidev qgis-plugin-dev-workshop.md --port 3031 --open",

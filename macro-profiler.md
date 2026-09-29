@@ -22,11 +22,11 @@ transition: slide-left
 <div class="who">Joona Laine · QGIS User Conference 2026</div>
 
 <div class="workshop">
-<div class="qr">QR</div>
+<img src="./images/qr-workshop.svg" alt="QR code for the workshop slides" class="qr" />
 <div>
 <div class="ws-label">Also at QUC 2026: workshop</div>
 <div class="ws-title">Level up your QGIS plugin development skills</div>
-<div class="ws-url">slides: <span class="fill">[link]</span></div>
+<div class="ws-url"><a href="https://cofactor-company.github.io/quc2026-slides/qgis-plugin-dev-workshop/">cofactor-company.github.io/quc2026-slides/qgis-plugin-dev-workshop</a></div>
 </div>
 </div>
 
@@ -34,19 +34,16 @@ transition: slide-left
 
 <CofactorLogo class="absolute bottom-10 right-14 text-3xl" />
 
-<!-- TODO: replace [link] and the QR placeholder with the workshop slides URL once the Netlify site is live -->
-
 <style>
 h1 { font-size: 3rem !important; line-height: 1.1 !important; margin: 0 !important; color: var(--cofactor-fg) !important; }
 h1 { background: linear-gradient(100deg, var(--cofactor-fg) 15%, var(--cofactor-accent) 65%, var(--cofactor-cyan)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-bottom: 0.1em; }
 .sub { color: var(--cofactor-accent); font-size: 1.6rem; margin-top: 0.5rem; }
 .who { margin-top: 1.5rem; opacity: 0.8; }
 .workshop { margin-top: 3rem; display: flex; gap: 1rem; align-items: center; background: var(--cofactor-bg-dark); border-radius: 0.5rem; padding: 0.8rem 1rem; width: max-content; }
-.qr { width: 4.5rem; height: 4.5rem; border: 2px dashed #ffd166; color: #ffd166; display: flex; align-items: center; justify-content: center; font-weight: 700; border-radius: 0.3rem; }
+.qr { width: 6rem; height: 6rem; border-radius: 0.3rem; display: block; }
 .ws-label { font-size: 0.8rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; }
 .ws-title { color: var(--cofactor-accent); font-weight: 700; }
 .ws-url { font-size: 0.85rem; opacity: 0.8; font-family: var(--slidev-code-font-family, monospace); }
-.fill { color: #ffd166; border-bottom: 1px dashed #ffd166; }
 </style>
 
 ---
@@ -300,7 +297,7 @@ class MyPlugin:
 
 <div class="core-dep">
 
-**Only need the library?** Add [`profiler-qgis-core`](https://pypi.org/project/profiler-qgis-core/) to `runtime_requires`, see the <a href="/qgis-plugin-dev-workshop/#/third-party-libraries" target="_blank">workshop slides</a>
+**Only need the library?** Add [`profiler-qgis-core`](https://pypi.org/project/profiler-qgis-core/) to `runtime_requires`, see the <a href="https://cofactor-company.github.io/quc2026-slides/qgis-plugin-dev-workshop/#/third-party-libraries" target="_blank">workshop slides</a>
 
 </div>
 
@@ -340,7 +337,7 @@ MacroPlayer(playback_speed=1.5).play(macro)
 
 <div class="core-dep">
 
-**Only need the library?** Add [`macro-qgis-core`](https://pypi.org/project/macro-qgis-core/) to `runtime_requires`, see the <a href="/qgis-plugin-dev-workshop/#/third-party-libraries" target="_blank">workshop slides</a>
+**Only need the library?** Add [`macro-qgis-core`](https://pypi.org/project/macro-qgis-core/) to `runtime_requires`, see the <a href="https://cofactor-company.github.io/quc2026-slides/qgis-plugin-dev-workshop/#/third-party-libraries" target="_blank">workshop slides</a>
 
 </div>
 

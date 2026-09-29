@@ -13,7 +13,7 @@ npm run dev:macro-profiler     # for macro-profiler slides
 npm run dev:workshop           # for plugin dev workshop slides
 ```
 
-The site is deployed with [Netlify](https://www.netlify.com/) (`netlify.toml`), and every pull request gets a deploy preview.
+Every push to `main` builds both decks and their PDFs and deploys them to GitHub Pages at <https://cofactor-company.github.io/quc2026-slides/> (see [`.github/workflows/pages.yml`](./.github/workflows/pages.yml)).
 
 ## License
 

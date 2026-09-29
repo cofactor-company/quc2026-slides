@@ -23,17 +23,15 @@ fonts:
 <div class="who2">QGIS User Conference 2026</div>
 
 <div class="talk">
-<div class="qr">QR</div>
+<img src="./images/qr-macro-profiler.svg" alt="QR code for the macro talk slides" class="qr" />
 <div>
 <div class="talk-label">Also at QUC 2026: talk</div>
 <div class="talk-title">Automated QGIS macro workflows</div>
-<div class="talk-url">slides: <span class="fill">[link]</span></div>
+<div class="talk-url"><a href="https://cofactor-company.github.io/quc2026-slides/macro-profiler/">cofactor-company.github.io/quc2026-slides/macro-profiler</a></div>
 </div>
 </div>
 
 </div>
-
-<!-- TODO: replace [link] and the QR placeholder with the macro talk slides URL once the Netlify site is live -->
 
 <style>
 h1 { font-size: 2.8rem !important; line-height: 1.1 !important; margin: 0 !important; color: var(--cofactor-fg) !important; max-width: 46rem; }
@@ -43,11 +41,10 @@ h1 { background: linear-gradient(100deg, var(--cofactor-fg) 15%, var(--cofactor-
 .who2 { opacity: 0.7; font-size: 0.95rem; margin-top: 0.2rem; }
 .org { opacity: 0.7; }
 .talk { margin-top: 2.5rem; display: flex; gap: 1rem; align-items: center; background: var(--cofactor-bg-dark); border-radius: 0.5rem; padding: 0.8rem 1rem; width: max-content; }
-.qr { width: 4.5rem; height: 4.5rem; border: 2px dashed #ffd166; color: #ffd166; display: flex; align-items: center; justify-content: center; font-weight: 700; border-radius: 0.3rem; }
+.qr { width: 6rem; height: 6rem; border-radius: 0.3rem; display: block; }
 .talk-label { font-size: 0.8rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; }
 .talk-title { color: var(--cofactor-accent); font-weight: 700; }
 .talk-url { font-size: 0.85rem; opacity: 0.8; font-family: var(--slidev-code-font-family, monospace); }
-.fill { color: #ffd166; border-bottom: 1px dashed #ffd166; }
 </style>
 
 ---
@@ -380,12 +377,7 @@ transition: fade
 # Exercise: initial plugin with copier template
 <!-- 30min reserved -->
 
-<!-- TODO: link to exerices -->
-<div class="talk-url mt-6">Link to exercise: <span class="fill">[link]</span></div>
 
-<style>
-.fill { color: #ffd166; border-bottom: 1px dashed #ffd166; }
-</style>
 
 
 ---
@@ -703,8 +695,6 @@ transition: fade
 
 # Exercise/live demo: formatting and linting tools
 
-<!-- TODO: link to exerices -->
-<div class="talk-url mt-6">Link to exercise: <span class="fill">[link]</span></div>
 <!-- Ensure that typign works for all, move py.typed to correct dir -->
 
 ---
@@ -1207,12 +1197,8 @@ transition: fade
 
 # Exercise: fix a broken plugin
 
-<div class="talk-url mt-6">Link to exercise: <span class="fill">[link]</span></div>
 
 
-<style>
-.fill { color: #ffd166; border-bottom: 1px dashed #ffd166; }
-</style>
 
 ---
 
@@ -1366,11 +1352,7 @@ transition: fade
 
 # Exercise: translating the plugin
 
-<div class="talk-url mt-6">Link to exercise: <span class="fill">[link]</span></div>
 
-<style>
-.fill { color: #ffd166; border-bottom: 1px dashed #ffd166; }
-</style>
 
 ---
 

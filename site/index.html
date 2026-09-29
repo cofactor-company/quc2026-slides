@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>QUC 2026 slides</title>
-  <link rel="icon" href="/qgis-plugin-dev-workshop/favicon.ico">
+  <link rel="icon" href="qgis-plugin-dev-workshop/favicon.ico">
   <style>
     :root {
       --bg: #262729;
@@ -26,7 +26,7 @@
     }
     main { width: 100%; max-width: 32rem; }
     h1 { color: var(--accent); font-weight: 400; font-size: 2rem; margin: 0 0 1.5rem; }
-    a {
+    a.deck {
       display: block;
       padding: 1.1rem 1.25rem;
       margin-bottom: 0.75rem;
@@ -35,21 +35,24 @@
       color: var(--fg);
       text-decoration: none;
     }
-    a:hover, a:focus-visible { outline: 2px solid var(--accent); }
-    a span { display: block; color: var(--accent); font-weight: 700; margin-bottom: 0.2rem; }
+    a.deck:hover, a.deck:focus-visible { outline: 2px solid var(--accent); }
+    a.deck span { display: block; color: var(--accent); font-weight: 700; margin-bottom: 0.2rem; }
+    .pdf { display: block; margin: -0.25rem 0 1.25rem 1.25rem; font-size: 0.85rem; color: var(--accent); }
   </style>
 </head>
 <body>
   <main>
     <h1>QUC 2026 slides</h1>
-    <a href="/qgis-plugin-dev-workshop/">
+    <a class="deck" href="qgis-plugin-dev-workshop/">
       <span>Level up your QGIS plugin development skills</span>
       Workshop
     </a>
-    <a href="/macro-profiler/">
+    <a class="pdf" href="qgis-plugin-dev-workshop/qgis-plugin-dev-workshop.pdf">PDF</a>
+    <a class="deck" href="macro-profiler/">
       <span>Automated QGIS macro workflows</span>
       ...and performance monitoring
     </a>
+    <a class="pdf" href="macro-profiler/macro-profiler.pdf">PDF</a>
   </main>
 </body>
 </html>
