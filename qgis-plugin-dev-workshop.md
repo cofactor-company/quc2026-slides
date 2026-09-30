@@ -354,6 +354,8 @@ create-qgis-venv   # in the plugin root, asks which QGIS installation to use
 
 ---
 transition: fade
+layout: center
+class: text-center
 ---
 
 
@@ -669,6 +671,8 @@ def select_roads(
 
 ---
 transition: fade
+layout: center
+class: text-center
 ---
 
 # Exercise/live demo: formatting and linting tools
@@ -806,6 +810,8 @@ T7 Title does not match regex (: [^A-Z])
 
 ---
 transition: fade
+layout: center
+class: text-center
 ---
 
 # Break
@@ -1152,6 +1158,8 @@ uv run pytest --cov               # with coverage
 
 ---
 transition: fade
+layout: center
+class: text-center
 ---
 
 # Exercise: fix a broken plugin
@@ -1307,6 +1315,8 @@ transition: fade
 
 ---
 transition: fade
+layout: center
+class: text-center
 ---
 
 # Exercise: translating the plugin
@@ -1515,6 +1525,8 @@ transition: fade
 
 ---
 transition: fade
+layout: center
+class: text-center
 ---
 
 
