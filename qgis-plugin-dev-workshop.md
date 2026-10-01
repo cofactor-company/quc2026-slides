@@ -893,6 +893,7 @@ DEBUGGER_LIBRARY=debugpy
 * Replaces `qgis.utils.iface` with a test stub
 * Cleans the project and layer fixtures between tests
 * Fixtures for common needs: project, canvas, processing, sample data
+* Shows the map during a test and opens real `.qgs` projects
 
 ```sh
 uv run pytest
@@ -959,9 +960,50 @@ def test_select_roads_selects_main_roads(
 
 ---
 
+
+# Test against real project files
+
+> [!PROBLEM] Users' projects have styles, joins, relations and odd CRSs that a memory layer never has
+
+<div class="grid grid-cols-[1.2fr_1fr] gap-6 mt-4">
+<div>
+
+```python
+DATA = Path(__file__).parent / "data"
+
+
+@pytest.mark.qgis_show_map(timeout=10)
+def test_select_roads_in_city_project(qgis_bot: QgisBot) -> None:
+    project = qgis_bot.open_project(DATA / "city.qgz")
+    roads = project.mapLayersByName("roads")[0]
+
+    count = select_roads(project, roads.id())
+
+    assert count == 42
+```
+
+</div>
+<div>
+
+* `qgis_bot.open_project` clears the project and reads a `.qgs`/`.qgz`
+* Fails the test if the project can't be read
+* The canvas gets the project's visible layers, order, extent and CRS
+* With `qgis_show_map` you see the project as the user does
+* Keep small sample projects in `test/data/`
+
+</div>
+</div>
+
+<style>
+.slidev-code { font-size: 12.5px !important; line-height: 19px !important; }
+li { font-size: 0.95rem; line-height: 1.4; }
+</style>
+
+---
+
 # Testing code that uses iface
 
-> [!PROBLEM] Plugin code talks to the user through <code>iface</code>, but a test can't see the message bar
+> [!PROBLEM] Plugin code talks to the user through <code>iface</code>, but <code>iface</code> is not injected
 
 <v-click>
 <div class="grid grid-cols-[1.3fr_1fr] gap-6 mt-4">
@@ -1079,11 +1121,11 @@ Natural Earth countries from the <code>world_map.gpkg</code> shipped with QGIS
 </div>
 <div class="fixture-card">
 <div class="fixture-name">qgis_bot</div>
-Helpers, e.g. creating a feature through <code>QgsAttributeDialog</code>
+Helpers: <code>open_project(...)</code>, creating a feature through <code>QgsAttributeDialog</code>
 </div>
 <div class="fixture-card">
 <div class="fixture-name">@pytest.mark.qgis_show_map</div>
-Opens the map during the test for visual debugging
+Shows the map with the test's layers for visual debugging
 </div>
 <div class="fixture-card">
 <div class="fixture-name">wait / wait_until</div>
