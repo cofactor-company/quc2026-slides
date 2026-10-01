@@ -65,7 +65,7 @@ src: ./pages/bio-workshop.md
 <v-click>
 
 > [!NOTE] Goal
-> The goal of this workshop is simply to share our setup with you, show you why it works for us, and help you apply it to your own work.
+> The goal of this workshop is to share our setup with you and help you apply it to your own work.
 
 
 </v-click>
@@ -122,11 +122,11 @@ src: ./pages/bio-workshop.md
 <div class="relative h-[345px] mt-4">
 <figure class="absolute left-0 top-0 w-[58%] m-0">
 <img src="./images/qgis-editor.png" alt="QGIS Python editor" class="w-full rounded-lg shadow-2xl" />
-<figcaption class="absolute -top-3 left-3 px-2 py-0.5 rounded bg-[#212326] text-xs">QGIS Python editor</figcaption>
+<figcaption class="absolute -top-3 left-3 px-2 py-0.5 rounded bg-[#18191b] text-xs">QGIS Python editor</figcaption>
 </figure>
 <figure v-click class="absolute right-0 bottom-0 w-[64%] m-0">
 <img src="./images/pycharm-editor.png" alt="PyCharm" class="w-full rounded-lg shadow-2xl ring-1 ring-white/10" />
-<figcaption class="absolute -top-3 left-3 px-2 py-0.5 rounded bg-[#212326] text-xs">PyCharm</figcaption>
+<figcaption class="absolute -top-3 left-3 px-2 py-0.5 rounded bg-[#18191b] text-xs">PyCharm</figcaption>
 </figure>
 </div>
 
@@ -210,7 +210,6 @@ my-plugin/
 │   ├── plugin.py      # the plugin class
 │   ├── env.py         # environment variables
 │   ├── metadata.txt
-|   ├── utils/         # utility modules
 │   └── resources/     # icons, translations 
 ├── test/              # pytest-qgis tests
 ├── pyproject.toml     # dependencies, qpdt config
@@ -472,7 +471,7 @@ layer = QgsVectorLayer(path, "roads", "ogr")
 
 * Same style for the whole team
 * No time spent on spacing and indentation
-* Safe to run automatically: behavior never changes
+* Logic/behaviour never changes → safe to run automatically
 
 </div>
 <div class="tool-card" v-click>
@@ -502,72 +501,6 @@ C901 `run` is too complex (14 > 10)
 
 ---
 
-# Code review becomes style review?
-
-> [!PROBLEM] Review comments about whitespace and import order, while real bugs slip through
-
-<v-click>
-<div class="grid grid-cols-2 gap-10 mt-4">
-<div>
-
-* Everyone formats code a bit differently
-* Diffs full of unrelated formatting changes
-* Simple bugs slip through: unused imports, bare `except`, `None` where a layer was expected
-
-</div>
-<div>
-
-* Let **tools** decide style, humans review logic
-* A **formatter** makes everyone's code look the same
-* **Linters** and a **type checker** catch the simple bugs before review
-
-</div>
-</div>
-</v-click>
-
----
-
-# flake8-qgis: QGIS-specific checks
-
-> [!PROBLEM] Generic linters don't know QGIS pitfalls, like code that breaks on QGIS 4 / Qt6
-
-<v-click>
-<div class="grid grid-cols-[1fr_1.2fr] gap-6 mt-4">
-<div>
-
-```python
-from PyQt5.QtCore import pyqtSignal
-import gdal
-
-class MyDialog(QDialog):
-    def run(self) -> None:
-        self.exec_()
-        project = QgsProject.instance()
-        project.write("project.qgz")
-```
-
-</div>
-<div>
-
-```console
-$ flake8
-QGS103 Use 'from qgis.PyQt.QtCore import
-       pyqtSignal' instead of 'from PyQt5...'
-QGS106 Use 'from osgeo import gdal'
-       instead of 'import gdal'
-QGS107 Use 'exec' instead of 'exec_'
-QGS201 Check the success flag and possibly error
-       message from return value of QgsProject.write()
-```
-
-</div>
-</div>
-
-* [flake8-qgis](https://github.com/osgeosuomi/flake8-qgis) rules: `QGS1xx` common rules, `QGS2xx` return values, `QGS4xx` Qt6 / QGIS 4 rules
-* The template also runs **flake8-spellcheck** on names, with project words in `whitelist.txt`
-</v-click>
-
----
 
 # Ruff: formatting and linting Python
 
@@ -616,14 +549,56 @@ T201 `print` found
 </div>
 </v-click>
 ---
+
+# flake8-qgis: QGIS-specific checks
+
+> [!PROBLEM] Generic linters don't know QGIS pitfalls, like code that breaks on QGIS 4 / Qt6
+
+<v-click>
+<div class="grid grid-cols-[1fr_1.2fr] gap-6 mt-4">
+<div>
+
+```python
+from PyQt5.QtCore import pyqtSignal
+import gdal
+
+class MyDialog(QDialog):
+    def run(self) -> None:
+        self.exec_()
+        project = QgsProject.instance()
+        project.write("project.qgz")
+```
+
+</div>
+<div>
+
+```console
+$ flake8
+QGS103 Use 'from qgis.PyQt.QtCore import
+       pyqtSignal' instead of 'from PyQt5...'
+QGS106 Use 'from osgeo import gdal'
+       instead of 'import gdal'
+QGS107 Use 'exec' instead of 'exec_'
+QGS201 Check the success flag and possibly error
+       message from return value of QgsProject.write()
+```
+
+</div>
+</div>
+
+* [flake8-qgis](https://github.com/osgeosuomi/flake8-qgis) rules: `QGS1xx` common rules, `QGS2xx` return values, `QGS4xx` Qt6 / QGIS 4 rules
+* The template also runs **flake8-spellcheck** on names, with project words in `whitelist.txt`
+</v-click>
+
+---
 transition: fade
 ---
 
-# Mypy: type checking
+# Mypy/ty: type checking
 
 > [!PROBLEM] The QGIS API returns <code>None</code> or a base class more often than you think
 
-<div class="grid grid-cols-2 gap-6 mt-4">
+<div class="grid grid-cols-2 gap-6 mt-2">
 <div>
 
 ```python
@@ -658,15 +633,18 @@ def select_roads(
     return layer.selectedFeatureCount()
 ```
 
-* [Mypy](https://mypy-lang.org/) reads the type hints of your code and the QGIS `.pyi` stubs
+* [Mypy](https://mypy-lang.org/) and [ty](https://docs.astral.sh/ty/) read the type hints of your code and the QGIS `.pyi` stubs
 * Catches the bug before a user without a vector layer does
 * Type hints double as documentation and power IDE autocomplete
+* ty is faster and more modern, but very strict about type annotations
+  * Becoming the default type checker for the template 
 
 </div>
 </div>
 
 <style>
 .slidev-code { font-size: 12px !important; line-height: 18px !important; }
+li { font-size: 0.95rem; line-height: 1.4; }
 </style>
 
 ---
@@ -724,7 +702,7 @@ Format and lint Python, fix what it can
 flake8-qgis checks for QGIS pitfalls and spellcheck
 </div>
 <div class="hook-card">
-<div class="hook-name">mypy</div>
+<div class="hook-name">mypy / ty</div>
 Type check against the QGIS API
 </div>
 <div class="hook-card">
@@ -753,7 +731,7 @@ Update translation files, normalize Qt Designer <code>.ui</code> XML
 </div>
 <div class="hook-card col-span-2">
 <div class="hook-name">gitlint</div>
-Commit messages follow <a href="https://www.conventionalcommits.org/">Conventional Commits</a> (<code>feat:</code>, <code>fix:</code>, ...)
+Commit messages follow <a href="https://www.conventionalcommits.org/">Conventional Commits</a>
 </div>
 </div>
 
@@ -825,7 +803,7 @@ From a branch to a released plugin
 <div class="flex justify-center">
 
 ```mermaid {scale: 0.85}
-%%{init: {"theme": "base", "themeVariables": {"background": "#262729", "primaryColor": "#212326", "primaryTextColor": "#ffffff", "primaryBorderColor": "#5ce1e6", "lineColor": "#5ce1e6", "clusterBkg": "#2d2e31", "clusterBorder": "#4a4b4f", "titleColor": "#5ce1e6", "edgeLabelBackground": "#262729", "fontFamily": "Inter, sans-serif", "fontSize": "16px"}, "flowchart": {"padding": 22, "wrappingWidth": 260}}}%%
+%%{init: {"theme": "base", "themeVariables": {"background": "#262729", "primaryColor": "#18191b", "primaryTextColor": "#ffffff", "primaryBorderColor": "#5ce1e6", "lineColor": "#5ce1e6", "clusterBkg": "#2d2e31", "clusterBorder": "#4a4b4f", "titleColor": "#5ce1e6", "edgeLabelBackground": "#262729", "fontFamily": "Inter, sans-serif", "fontSize": "16px"}, "flowchart": {"padding": 22, "wrappingWidth": 260}}}%%
 flowchart TB
   subgraph local ["On your machine&nbsp;&nbsp;&nbsp;"]
     direction LR
@@ -1192,7 +1170,7 @@ mark strings, extract them, translate, compile
 <div class="flex justify-center mt-8">
 
 ```mermaid {scale: 0.62}
-%%{init: {"theme": "base", "themeVariables": {"background": "#262729", "primaryColor": "#212326", "primaryTextColor": "#ffffff", "primaryBorderColor": "#5ce1e6", "lineColor": "#5ce1e6", "edgeLabelBackground": "#262729", "fontFamily": "Inter, sans-serif", "fontSize": "16px"}, "flowchart": {"padding": 22}}}%%
+%%{init: {"theme": "base", "themeVariables": {"background": "#262729", "primaryColor": "#18191b", "primaryTextColor": "#ffffff", "primaryBorderColor": "#5ce1e6", "lineColor": "#5ce1e6", "edgeLabelBackground": "#262729", "fontFamily": "Inter, sans-serif", "fontSize": "16px"}, "flowchart": {"padding": 22}}}%%
 flowchart LR
   src["<b>Source code</b><br/>tr() · .ui files"]
   ts["<b>fi.ts</b><br/>XML&nbsp;&nbsp;"]
@@ -1380,7 +1358,7 @@ jobs:
 <div class="flex justify-center mt-4">
 
 ```mermaid {scale: 0.62}
-%%{init: {"theme": "base", "themeVariables": {"background": "#262729", "primaryColor": "#212326", "primaryTextColor": "#ffffff", "primaryBorderColor": "#5ce1e6", "lineColor": "#5ce1e6", "edgeLabelBackground": "#262729", "fontFamily": "Inter, sans-serif", "fontSize": "16px"}, "flowchart": {"padding": 22}}}%%
+%%{init: {"theme": "base", "themeVariables": {"background": "#262729", "primaryColor": "#18191b", "primaryTextColor": "#ffffff", "primaryBorderColor": "#5ce1e6", "lineColor": "#5ce1e6", "edgeLabelBackground": "#262729", "fontFamily": "Inter, sans-serif", "fontSize": "16px"}, "flowchart": {"padding": 22}}}%%
 flowchart LR
   draft["<b>Draft release</b><br/>run manually<br/>with a version"]
   review["<b>Review</b><br/>draft GitHub<br/>release"]
@@ -1543,7 +1521,7 @@ Every problem from today, and what solved it
 <div class="problem" v-click="1">Setting up the tools takes forever</div><div class="arrow" v-click="1">→</div><div class="solution" v-click="1"><b>qgis-plugin-copier-template</b></div>
 <div class="problem" v-click="2">Import errors in the IDE</div><div class="arrow" v-click="2">→</div><div class="solution" v-click="2"><b>venv</b> linked to QGIS</div>
 <div class="problem" v-click="3">Copying code into the QGIS profile</div><div class="arrow" v-click="3">→</div><div class="solution" v-click="3"><b>qpdt start</b> from your venv</div>
-<div class="problem" v-click="4">Code review becomes style review</div><div class="arrow" v-click="4">→</div><div class="solution" v-click="4"><b>Ruff, mypy, flake8-qgis</b>, run by <b>prek</b> on every commit</div>
+<div class="problem" v-click="4">Time is wasted fixing issues that tools can handle automatically</div><div class="arrow" v-click="4">→</div><div class="solution" v-click="4"><b>Ruff, ty, flake8-qgis</b>, run by <b>prek</b> on every commit</div>
 <div class="problem" v-click="5"><code>LOGGER.debug()</code> and restarting QGIS</div><div class="arrow" v-click="5">→</div><div class="solution" v-click="5">a <b>debugger</b> in your IDE</div>
 <div class="problem" v-click="6">Testing by clicking around</div><div class="arrow" v-click="6">→</div><div class="solution" v-click="6"><b>pytest-qgis</b></div>
 <div class="problem" v-click="7">The plugin speaks only English</div><div class="arrow" v-click="7">→</div><div class="solution" v-click="7"><b>tr()</b> and <b>qpdt</b> translations</div>

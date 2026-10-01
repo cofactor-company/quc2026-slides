@@ -2,7 +2,7 @@
 
 :root {
   --cofactor-bg: #262729;
-  --cofactor-bg-dark: #212326;
+  --cofactor-bg-dark: #1d1e20;
   --cofactor-fg: #ffffff;
   --cofactor-cyan: #00ffff;
   /* Softer cyan for larger accents (headings, links), where pure cyan is harsh */

@@ -177,7 +177,7 @@ Record the workflow once, measure it in every environment and version
 <div class="flex justify-center mt-6">
 
 ```mermaid {scale: 0.7}
-%%{init: {"theme": "base", "themeVariables": {"background": "#262729", "primaryColor": "#212326", "primaryTextColor": "#ffffff", "primaryBorderColor": "#5ce1e6", "lineColor": "#5ce1e6", "edgeLabelBackground": "#262729", "fontFamily": "Inter, sans-serif", "fontSize": "16px"}, "flowchart": {"padding": 22}}}%%
+%%{init: {"theme": "base", "themeVariables": {"background": "#262729", "primaryColor": "#1d1e20", "primaryTextColor": "#ffffff", "primaryBorderColor": "#5ce1e6", "lineColor": "#5ce1e6", "edgeLabelBackground": "#262729", "fontFamily": "Inter, sans-serif", "fontSize": "16px"}, "flowchart": {"padding": 22}}}%%
 flowchart LR
   rec["<b>Record</b><br/>a real workflow<br/>in the project"]
   save["<b>Save</b><br/>macro.json"]
