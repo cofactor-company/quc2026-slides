@@ -834,7 +834,7 @@ flowchart TB
 > [!PROBLEM] <code>LOGGER.debug()</code> calls everywhere, then restart QGIS and try again
 
 <v-click>
-<div class="grid grid-cols-[1.2fr_1fr] gap-6 mt-4">
+<div class="grid grid-cols-[1fr_1.25fr] gap-6 mt-4">
 <div>
 
 ```dotenv [.env]
@@ -849,23 +849,27 @@ DEBUGGER_LIBRARY=debugpy
 </div>
 <div>
 
-<!-- TODO: add VS Code screenshot, e.g. <img src="./images/vscode-debug.png" alt="VS Code stopped at a breakpoint in a QGIS plugin" class="rounded-lg shadow-2xl" /> -->
-<div class="screenshot-placeholder">VS Code screenshot</div>
+<div class="crop-top rounded-lg shadow-2xl"><img src="./images/vscode-debug.png" alt="VS Code stopped at a breakpoint in a QGIS plugin" /></div>
+
+</div>
+</div>
 
 <div class="text-sm mt-3">
 
 > [!tip] PyCharm / IntelliJ IDEA
-> `DEBUGGER_LIBRARY=pydevd` + `pydevd-pycharm` matching the IDE. Start a **Python Debug Server** on port 5678 *before* `qpdt start`
+> `DEBUGGER_LIBRARY=pydevd` + IDE-matching `pydevd-pycharm`. Start a **Python Debug Server** (port 5678) *before* `qpdt start`
 
 </div>
 
-</div>
-</div>
 </v-click>
 
 <style>
 .slidev-code { font-size: 12.5px !important; line-height: 19px !important; }
-.screenshot-placeholder { height: 230px; border: 2px dashed var(--cofactor-accent); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; opacity: 0.5; }
+li { font-size: 0.95rem; line-height: 1.4; }
+.markdown-alert code { white-space: nowrap; }
+/* Crop the screenshot's top edge by --crop-top (slide px) */
+.crop-top { --crop-top: 1px; overflow: hidden; }
+.crop-top img { display: block; margin-top: calc(-1 * var(--crop-top)); }
 </style>
 
 ---
