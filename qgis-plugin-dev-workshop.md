@@ -192,6 +192,74 @@ Creates a new plugin project with all of the above set up
 
 ---
 
+# Anatomy of a QGIS plugin
+
+A QGIS plugin does not need lot of boilerplate
+
+<div class="grid grid-cols-[0.9fr_1.1fr] gap-6 mt-4">
+<div>
+
+```text
+my_plugin/        # folder name = plugin id
+├── __init__.py   # classFactory()
+├── metadata.txt
+└── plugin.py     # the plugin class
+```
+
+```ini [metadata.txt]
+[general]
+name=My Plugin
+description=Does one thing well
+version=0.1.0
+qgisMinimumVersion=3.40
+# plugins.qgis.org also requires:
+# about, author, email, repository
+```
+
+<div class="flow">
+QGIS loads the plugin → <code>classFactory(iface)</code> → <code>initGui()</code>
+<br/>
+<br/>
+When QGIS closes, or plugin is disabled or reloaded → <code>unload()</code> 
+</div>
+
+</div>
+<div>
+
+```py [__init__.py]
+def classFactory(iface):  # this exact name is required
+    # No need to pass iface since it can be imported
+    from my_plugin.plugin import MyPlugin
+    return MyPlugin()
+```
+
+```py [plugin.py]
+from qgis.PyQt.QtWidgets import QAction
+from qgis.utils import iface
+
+class MyPlugin:
+
+    def initGui(self):
+        # add actions, menus, toolbars, providers...
+        self.action = QAction("Hello", iface.mainWindow())
+        iface.addToolBarIcon(self.action)
+
+    def unload(self):
+        # ...and remove everything initGui added
+        iface.removeToolBarIcon(self.action)
+```
+
+</div>
+</div>
+
+<style>
+.slidev-code { font-size: 12px !important; line-height: 17px !important; }
+.flow { margin-top: 0.8rem; border-left: 3px solid var(--cofactor-accent); padding: 0.2rem 0 0.2rem 0.7rem; font-size: 0.8rem; line-height: 1.6; }
+.flow code { font-size: 0.75rem; }
+</style>
+
+---
+
 # qgis-plugin-copier-template
 
 > [!PROBLEM] Setting up all these tools for every new plugin takes time, and every project ends up different
