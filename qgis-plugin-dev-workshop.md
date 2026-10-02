@@ -4,6 +4,26 @@ title: QGIS plugin development workshop
 exportFilename: qgis-plugin-dev-workshop
 routerMode: hash
 cofactorFooter: false
+paceTimer: true
+# Pace plan (dev-mode timer, see global-top.vue). Lengths live in each slide's `pace:`; update this table when you change them.
+# Slide  Section                          pace  Starts (min)  Clock
+#   2    Intro → qgis-venv-creator          20     0           9:00
+#  12    Exercise: copier template          30    20           9:20
+#  13    Running in QGIS → mypy             12    50           9:50
+#  19    Exercise: formatting/linting       12    62          10:02
+#  20    Commits                            10    74          10:14  (6 min spare)
+#  23    Break                   paceAt:90  30    90          10:30
+#  24    Dev practices, debugging            5   120          11:00
+#  26    Testing intro and example           7   125          11:05
+#  28    Testing slides to skip              2   132          11:12
+#  32    Running the tests                   3   134          11:14
+#  33    Exercise: fix a broken plugin      25   137          11:17
+#  34    Translations                        8   162          11:42
+#  38    Exercise: translations             12   170          11:50
+#  39    CI/CD slides                       10   182          12:02
+#  44    Live demo: CI/CD                    8   192          12:12
+#  45    Takeaways                           5   200          12:20
+#  47    Thank you / questions               5   205          12:25 → 12:30
 colorSchema: dark
 background: '#262729'
 favicon: favicon.ico
@@ -49,6 +69,7 @@ h1 { background: linear-gradient(100deg, var(--cofactor-fg) 15%, var(--cofactor-
 
 ---
 src: ./pages/bio-workshop.md
+pace: 20
 ---
 
 ---
@@ -423,6 +444,7 @@ create-qgis-venv   # in the plugin root, asks which QGIS installation to use
 transition: fade
 layout: center
 class: text-center
+pace: 30
 ---
 
 
@@ -432,6 +454,8 @@ class: text-center
 
 
 
+---
+pace: 12
 ---
 
 # How to get plugin code run on QGIS?
@@ -719,12 +743,15 @@ li { font-size: 0.95rem; line-height: 1.4; }
 transition: fade
 layout: center
 class: text-center
+pace: 12
 ---
 
 # Exercise/live demo: formatting and linting tools
 
 <!-- Ensure that typign works for all, move py.typed to correct dir -->
 
+---
+pace: 10
 ---
 
 # Committing changes
@@ -858,11 +885,15 @@ T7 Title does not match regex (: [^A-Z])
 transition: fade
 layout: center
 class: text-center
+paceAt: 90
+pace: 30
 ---
 
 # Break
 
-----
+---
+pace: 5
+---
 
 # Development practices
 
@@ -940,6 +971,8 @@ li { font-size: 0.95rem; line-height: 1.4; }
 .crop-top img { display: block; margin-top: calc(-1 * var(--crop-top)); }
 </style>
 
+---
+pace: 7
 ---
 
 # Next step from manual testing
@@ -1030,6 +1063,8 @@ def test_select_roads_selects_main_roads(
 .slidev-code { font-size: 12.5px !important; line-height: 19px !important; }
 </style>
 
+---
+pace: 2
 ---
 
 
@@ -1212,6 +1247,7 @@ Run the event loop until a condition holds, for async code
 
 ---
 transition: fade
+pace: 3
 ---
 
 
@@ -1252,6 +1288,7 @@ uv run pytest --cov               # with coverage
 transition: fade
 layout: center
 class: text-center
+pace: 25
 ---
 
 # Exercise: fix a broken plugin
@@ -1259,6 +1296,8 @@ class: text-center
 
 
 
+---
+pace: 8
 ---
 
 # Translations
@@ -1409,12 +1448,15 @@ transition: fade
 transition: fade
 layout: center
 class: text-center
+pace: 12
 ---
 
 # Exercise: translating the plugin
 
 
 
+---
+pace: 10
 ---
 
 
@@ -1619,12 +1661,15 @@ transition: fade
 transition: fade
 layout: center
 class: text-center
+pace: 8
 ---
 
 
 # Live demo: CI/CD pipeline
 
 
+---
+pace: 5
 ---
 
 # Takeaways
@@ -1684,6 +1729,7 @@ A consistent project layout, config, and tooling are easy for both humans and AI
 ---
 layout: center
 class: text-center
+pace: 5
 ---
 
 # Thank you!
