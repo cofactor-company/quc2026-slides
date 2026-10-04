@@ -53,37 +53,13 @@ src: ./pages/bio.md
 
 ---
 
-# How it all started
-
-<div class="timeline mt-6">
-<v-clicks>
-
-<div class="step"><div class="dot">1</div><div><b>Editing got slow</b><span>Users reported freezes, and the cause took a long time to find</span></div></div>
-<div class="step"><div class="dot">2</div><div><b>Profiling inside QGIS</b><span>QTimers added straight into the QGIS source</span></div></div>
-<div class="step"><div class="dot">3</div><div><b>Measuring the freeze</b><span>How long until QGIS responds again</span></div></div>
-<div class="step"><div class="dot">4</div><div><b>Fixed upstream</b><span>Free time: 1.3 s → 52 ms</span></div></div>
-<div class="step"><div class="dot">5</div><div><b>Profiler plugin</b><span>Find the next one without editing QGIS source code</span></div><img src="./images/profiler-icon.svg" alt="Profiler plugin icon" class="icon" /></div>
-<div class="step"><div class="dot">6</div><div><b>Macro plugin</b><span>Stop repeating the measurements by hand</span></div><img src="./images/macro-icon.svg" alt="Macro plugin icon" class="icon" /></div>
-
-</v-clicks>
-</div>
-
-<style>
-.timeline { position: relative; display: flex; flex-direction: column; gap: 0.7rem; }
-.timeline::before { content: ""; position: absolute; left: 0.95rem; top: 1rem; bottom: 1rem; width: 2px; background: var(--cofactor-accent); opacity: 0.35; }
-.step { position: relative; display: flex; align-items: center; gap: 1rem; }
-.step b { color: var(--cofactor-accent); margin-right: 0.75rem; }
-.step span { opacity: 0.85; }
-.dot { flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 9999px; background: var(--cofactor-bg-dark); border: 2px solid var(--cofactor-accent); color: var(--cofactor-accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
-.badge { margin-left: auto; font-size: 1.4rem; font-weight: 700; color: var(--cofactor-accent); background: var(--cofactor-bg-dark); border-radius: 0.5rem; padding: 0.2rem 0.8rem; }
-.icon { margin-left: auto; height: 2.2rem; }
-</style>
-
----
-
 # Sound familiar?
 
 <div class="grid grid-cols-3 gap-4 mt-8">
+<div class="story" v-click>
+<div class="story-value">"It freezes for me"</div>
+<div class="story-desc">The plugin runs fine on your machine, but users with other data and hardware say it freezes, and you can't see why</div>
+</div>
 <div class="story" v-click>
 <div class="story-value">Updates were a gamble</div>
 <div class="story-desc">Three QGIS releases a year: would the critical workflows still work, and still be fast?</div>
@@ -91,10 +67,6 @@ src: ./pages/bio.md
 <div class="story" v-click>
 <div class="story-value">Testing by hand</div>
 <div class="story-desc">Clicking through the same workflows again: slow, subjective, and no way to automate it inside QGIS</div>
-</div>
-<div class="story" v-click>
-<div class="story-value">"It freezes for me"</div>
-<div class="story-desc">The plugin runs fine on your machine, but users with other data and hardware say it freezes, and you can't see why</div>
 </div>
 </div>
 
@@ -118,7 +90,7 @@ That's what the two plugins are for
 
 > Record once, replay anywhere: automation without writing a single line of code
 
-<div class="grid grid-cols-2 gap-4 mt-6">
+<div class="grid grid-cols-3 gap-4 mt-3">
 <div class="card">
 <div class="card-title">Record</div>
 Mouse and keyboard events, straight from the Macro tab in Development Tools. No code
@@ -129,15 +101,39 @@ As many times as you want, at an adjustable speed
 </div>
 <div class="card">
 <div class="card-title">Save and share</div>
-Plain <code>.json</code> files that run in other environments and QGIS versions
+Macros and workflows in plain <code>.json</code> files that run in other environments and QGIS versions
 </div>
+<!--
 <div class="card">
 <div class="card-title">Profile the playback</div>
 Each run is timed and shows up in the profiler
 </div>
+-->
+<div class="card">
+<div class="card-title">Widgets, not pixels</div>
+Clicks find the same button or menu item even when windows have moved
+</div>
+<div class="card col-span-2">
+<div class="card-title">Workflows</div>
+Chain small macros into a whole workflow, use the same macro in many workflows, and play from any step
+<div class="chain">
+<div class="chip">Start digitizing</div>
+<div class="arrow">→</div>
+<div class="chip">Digitize a road</div>
+<div class="arrow">→</div>
+<div class="chip">Run analysis</div>
+</div>
+</div>
 </div>
 
-<div class="extra-ref above-footer">Use it as a library in your plugin? <Link to="extra-macro-api">Extra slides →</Link></div>
+<div class="extra-ref above-footer"><Link to="extra-macro-internals">Technical details →</Link> · <Link to="extra-macro-api">Use it as a library? →</Link></div>
+
+<style>
+.new { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; vertical-align: middle; margin-left: 0.4rem; padding: 0.05rem 0.45rem; border-radius: 9999px; border: 1.5px solid var(--cofactor-accent); }
+.chain { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem; }
+.chip { border: 1.5px solid var(--cofactor-accent); border-radius: 0.4rem; padding: 0.2rem 0.6rem; font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
+.arrow { color: var(--cofactor-accent); }
+</style>
 
 ---
 
@@ -166,7 +162,7 @@ cProfile any Python code and save <code>.prof</code> files for snakeviz or gprof
 </div>
 </div>
 
-<div class="extra-ref above-footer">Use it as a library in your plugin? <Link to="extra-profiler-api">Extra slides →</Link></div>
+<div class="extra-ref above-footer"><Link to="extra-profiler-internals">Technical details →</Link> · <Link to="extra-profiler-api">Use it as a library? →</Link></div>
 
 ---
 
@@ -191,7 +187,8 @@ flowchart LR
 
 ---
 
-# What can you do with it?
+
+# What can you do with them?
 
 <div class="grid grid-cols-2 gap-4 mt-8">
 <div class="card">
@@ -211,6 +208,12 @@ Rendering speeds and processing times across machines, QGIS versions and plugin 
 Profile a replayed workflow and drill down to the slow layer or Python function
 </div>
 </div>
+
+<div v-click class="mt-10 text-2xl text-center">
+
+</div>
+
+
 
 ---
 layout: center
@@ -246,7 +249,92 @@ Questions?
 
 <CofactorLogo class="block mt-4 text-3xl" />
 
-<div class="extra-ref"><Link to="extra-profiler-api">Extra slides →</Link></div>
+<div class="extra-ref"><Link to="extra-macro-internals">Extra slides →</Link></div>
+
+---
+routeAlias: extra-macro-internals
+---
+
+# Extra: Macro plugin technical details
+
+<div class="grid grid-cols-[1.25fr_1fr] gap-8 mt-4">
+<div>
+
+```python [pseudocode]
+# Record: one filter sees every event in QGIS
+QApplication.instance().installEventFilter(self)
+
+def eventFilter(self, obj, event):
+    if event.type() == QEvent.Type.MouseButtonPress:
+        self._record_mouse_button_event(event, obj, elapsed)
+    return False  # never consume the event
+
+# Replay: schedule the next event, then send this one
+def _play_next_event(self):
+    macro_event = self._event_queue.pop(0)
+    QTimer.singleShot(wait_ms, self._play_next_event)
+    QTest.mousePress(widget, button, modifiers, point)
+```
+
+</div>
+<div>
+
+* **Recording**: an application-wide `eventFilter` stores key and mouse events with their timing
+* **Widget references**: each event keeps the path to its widget (window, class, text, sibling index, location as first guess). Only the map canvas uses coordinates
+<!-- * **Menus** are stored as item texts, not clicks -->
+* **Replay** sends the events with `QTest` and moves the real cursor
+* **Blocking clicks**: a click that opens a modal dialog does not return until it closes. The `singleShot` set before the click fires inside the dialog's event loop, so playback goes on
+
+</div>
+</div>
+
+<style>
+.slidev-code { font-size: 14px !important; line-height: 22px !important; }
+li { font-size: 0.9rem; line-height: 1.4; }
+</style>
+
+---
+routeAlias: extra-profiler-internals
+---
+
+# Extra: Profiler plugin technical details
+
+<div class="grid grid-cols-[1.25fr_1fr] gap-8 mt-4">
+<div>
+
+```python [pseudocode]
+# Timed events land in QGIS's own profiler
+QgsApplication.profiler().start(name, group)
+
+# Button click: stop when the UI responds again
+button.clicked.connect(self._post_stop_event)
+QApplication.postEvent(window, StopProfilingEvent(name))
+
+# Main thread meter: ping from a background QThread
+poller.moveToThread(background_thread)
+poller.poll.connect(self._on_poll)  # slot runs in the main thread
+
+def _on_poll(self):
+    delay_ms = poller.elapsed_ms_after_last_ping()
+    if delay_ms > threshold_ms:
+        self._emit_anomaly(delay_ms)
+```
+
+</div>
+<div>
+
+* Timed events go to `QgsRuntimeProfiler`, next to QGIS's own events
+* **Clicks**: an application-wide `eventFilter` starts the timer when a button is released. A posted custom event stops it once the event loop gets to it
+* **Meters** watch recovery time, main thread delay and map rendering, and add anomalies to the profiler
+* **cProfile** profiles Python code and writes a `.prof` file
+
+</div>
+</div>
+
+<style>
+.slidev-code { font-size: 14px !important; line-height: 22px !important; }
+li { font-size: 0.9rem; line-height: 1.4; }
+</style>
 
 ---
 routeAlias: extra-profiler-api
@@ -282,7 +370,7 @@ class MyPlugin:
 * `@profile` times one function
 * `@profile_class` times every method of a class
 * `@cprofile_plugin` runs cProfile over the whole plugin lifecycle
-* Results show up in the same profiler tree as QGIS's own events
+* `@profile` results show up in the same profiler tree as QGIS's own events, cProfile results go to a `.prof` file
 * **Calibrate** the meters to your machine's baseline in Settings
 
 <div class="core-dep">
@@ -324,6 +412,7 @@ MacroPlayer(playback_speed=1.5).play(macro)
 
 * The core libraries `qgis_macros` and `qgis_profiler` work without the plugin UI
 * Record and replay macros from your own scripts
+* `MacroWorkflow` chains macros by uid, `MacroFile` saves and loads both
 
 <div class="core-dep">
 
